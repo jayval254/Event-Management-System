@@ -254,7 +254,7 @@ class Parking extends Admin_Controller
 						<div class="company-info">
 							<div class="company-name"><p>'.$company_info['name'].'</p></div>
 							<div class="company-address"><p>'.$company_info['address'].'</p></div>
-							<div class="parking-slip"><h2>Parking Slip</h2></div>
+							<div class="parking-slip"><h2>Event Slip</h2></div>
 						</div>
 						<div class="parking-info">
 							<table class="table">
@@ -263,10 +263,10 @@ class Parking extends Admin_Controller
 									<td>Time: '.$check_in.'</td>
 								</tr>
 								<tr>
-									<td>Vehicle type: '.ucwords($vehicle_category['name']).' </td>
+									<td>Event type: '.ucwords($vehicle_category['name']).' </td>
 								</tr>
 								<tr>
-									<td>Parking no: '.$parking_data['parking_code'].' </td>
+									<td>Event no: '.$parking_data['parking_code'].' </td>
 								</tr>
 							</table>
 
