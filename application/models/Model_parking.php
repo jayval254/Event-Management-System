@@ -13,40 +13,40 @@ class Model_parking extends CI_Model
 	public function getParkingData($id = null)
 	{
 		if($id) {
-			$sql = "SELECT * FROM parking WHERE id = ?";
+			$sql = "SELECT * FROM events WHERE id = ?";
 			$query = $this->db->query($sql, array($id));
 			return $query->row_array();
 		}
 
-		$sql = "SELECT * FROM parking ORDER BY id DESC";
+		$sql = "SELECT * FROM events ORDER BY id DESC";
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
 
 	public function create($data = '')
 	{
-		$create = $this->db->insert('parking', $data);
+		$create = $this->db->insert('events', $data);
 		return ($create == true) ? true : false;
 	}
 
 	public function edit($data, $id)
 	{
 		$this->db->where('id', $id);
-		$update = $this->db->update('parking', $data);
+		$update = $this->db->update('events', $data);
 		return ($update == true) ? true : false;	
 	}
 
 	public function delete($id)
 	{
 		$this->db->where('id', $id);
-		$delete = $this->db->delete('parking');
+		$delete = $this->db->delete('events');
 		return ($delete == true) ? true : false;
 	}	
 
 
 	/*
-	 update the payment information for the parking
-	 gets the parking data from the id and 
+	 update the payment information for the events
+	 gets the events data from the id and 
 	 caculate the difference time 
 	 checks if the rate is based on the hourly or fixed rate
 	*/
@@ -54,7 +54,7 @@ class Model_parking extends CI_Model
 	{
 		if($id && $payment_status) {
 			if($payment_status == 1) {
-				// get the data of parking data
+				// get the data of events data
 				$data = $this->getParkingData($id);
 				
 				$check_in_time = $data['in_time'];
@@ -86,7 +86,7 @@ class Model_parking extends CI_Model
 				);
 
 				$this->db->where('id', $id);
-				$update_ops = $this->db->update('parking', $update_data);
+				$update_ops = $this->db->update('events', $update_data);
 
 				if($update_ops == true) {
 
@@ -110,7 +110,7 @@ class Model_parking extends CI_Model
 				);
 
 				$this->db->where('id', $id);
-				$update_data = $this->db->update('parking', $update_data);
+				$update_data = $this->db->update('events', $update_data);
 				return ($update_data == true) ? true: false; 
 				
 			}
@@ -120,7 +120,7 @@ class Model_parking extends CI_Model
 
 	public function countTotalParking()
 	{
-		$sql = "SELECT * FROM parking";
+		$sql = "SELECT * FROM events";
 		$query = $this->db->query($sql);
 		return $query->num_rows();
 	}
@@ -128,12 +128,12 @@ class Model_parking extends CI_Model
 	
 	public function countTotalEarning() {
 		$this->db->select_sum('earned_amount');
-		$result = $this->db->get('parking')->row();  
+		$result = $this->db->get('events')->row();  
 		return $result->earned_amount;
 	}
 
 	public function countTotalUnpaid() {
-		$sql = "SELECT * FROM parking WHERE paid_status = 0";
+		$sql = "SELECT * FROM events WHERE paid_status = 0";
 		$query = $this->db->query($sql);
 		return $query->num_rows();
 	}
