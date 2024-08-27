@@ -9,7 +9,7 @@ class Model_report extends CI_Model
 
 	public function getParkingYear()
 	{
-		$sql = "SELECT * FROM parking WHERE paid_status = ?";
+		$sql = "SELECT * FROM events WHERE paid_status = ?";
 		$query = $this->db->query($sql, array(1));
 		$result = $query->result_array();
 
@@ -29,7 +29,7 @@ class Model_report extends CI_Model
 		if ($year) {
 			$months = $this->months();
 
-			$sql = "SELECT * FROM parking WHERE paid_status = ?";
+			$sql = "SELECT * FROM events WHERE paid_status = ?";
 			$query = $this->db->query($sql, array(1));
 			$result = $query->result_array();
 
