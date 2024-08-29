@@ -10,33 +10,33 @@ class Model_Slots extends CI_Model
 	public function getSlotData($id = null) 
 	{
 		if($id) {
-			$sql = "SELECT * FROM slots WHERE id = ?";
+			$sql = "SELECT * FROM venues WHERE id = ?";
 			$query = $this->db->query($sql, array($id));
 			return $query->row_array();
 		}
 
-		$sql = "SELECT * FROM slots";
+		$sql = "SELECT * FROM venues";
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
 
 	public function create($data = '')
 	{
-		$create = $this->db->insert('slots', $data);
+		$create = $this->db->insert('venues', $data);
 		return ($create == true) ? true : false;
 	}
 
 	public function edit($data, $id)
 	{
 		$this->db->where('id', $id);
-		$update = $this->db->update('slots', $data);
+		$update = $this->db->update('venues', $data);
 		return ($update == true) ? true : false;	
 	}
 
 	public function delete($id)
 	{
 		$this->db->where('id', $id);
-		$delete = $this->db->delete('slots');
+		$delete = $this->db->delete('venues');
 		return ($delete == true) ? true : false;
 	}
 
@@ -44,27 +44,27 @@ class Model_Slots extends CI_Model
 	{
 		if($id) {
 			$this->db->where('id', $id);
-			$update = $this->db->update('slots', $data);
+			$update = $this->db->update('venues', $data);
 			return ($update == true) ? true : false;
 		}
 	}
 
 	public function getAvailableSlotData()
 	{
-		$sql = "SELECT * FROM slots WHERE availability_status = ? AND active = ?";
+		$sql = "SELECT * FROM venues WHERE availability_status = ? AND active = ?";
 		$query = $this->db->query($sql, array(1, 1));
 		return $query->result_array();
 	}
 
 	public function countTotalSlots()
 	{
-		$sql = "SELECT * FROM slots";
+		$sql = "SELECT * FROM venues";
 		$query = $this->db->query($sql);
 		return $query->num_rows();
 	}
 
 	public function countTotalAvailableSlots(){
-		$sql = "SELECT * FROM slots WHERE availability_status = 1";
+		$sql = "SELECT * FROM venues WHERE availability_status = 1";
 		$query = $this->db->query($sql);
 		return $query->num_rows();
 	}
