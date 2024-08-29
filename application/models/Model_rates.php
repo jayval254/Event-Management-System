@@ -42,7 +42,7 @@ class Model_rates extends CI_Model
 
 	public function getCategoryRate($id)
 	{
-	 	$sql = "SELECT * FROM rate WHERE vechile_cat_id = ? AND active = ?";
+	 	$sql = "SELECT * FROM rate WHERE events_cat_id = ? AND active = ?";
 	 	$query = $this->db->query($sql, array($id, 1));
 	 	return $query->result_array();
 	}
